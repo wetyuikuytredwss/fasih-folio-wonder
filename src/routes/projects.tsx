@@ -22,7 +22,7 @@ const projects = [
     scale: "School-wide collaborative event",
     summary: "A collaborative school event blending creativity, teamwork, and event planning. Designed and coordinated end to end to deliver an immersive evening of discovery for fellow students.",
     bullets: ["Concept & narrative design", "Logistics & coordination", "Audience engagement"],
-    image: mysterySigning.url,
+    image: "/retouch_2026030619031767.jpg.jpeg",
     accent: true,
   },
   {
