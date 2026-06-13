@@ -148,6 +148,11 @@
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-12px) rotate(2deg); }
 }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 
 @utility reveal {
   animation: reveal-up 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
