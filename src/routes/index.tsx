@@ -130,20 +130,74 @@ function Hero() {
   );
 }
 
+function useCountUp(target: number, suffix = "", start = false, duration = 1600) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setValue(Math.round(target * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, start, duration]);
+  return `${value}${suffix}`;
+}
+
+function Stat({ n, suffix, l, delay }: { n: number; suffix: string; l: string; delay: number }) {
+  const [show, setShow] = useState(false);
+  const ref = (el: HTMLDivElement | null) => {
+    if (!el || show) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setShow(true); io.disconnect(); }
+    }, { threshold: 0.4 });
+    io.observe(el);
+  };
+  const value = useCountUp(n, suffix, show);
+  return (
+    <Reveal delay={delay} className="text-center px-4">
+      <div ref={ref}>
+        <p className="text-display text-5xl md:text-6xl text-primary">{value}</p>
+        <p className="mt-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">{l}</p>
+      </div>
+    </Reveal>
+  );
+}
+
 function Stats() {
-  const stats = [
-    { n: "3×", l: "School Leadership Roles" },
-    { n: "10+", l: "Conferences & Events" },
-    { n: "Multi", l: "National Recognitions" },
-  ];
   return (
     <section className="py-20 border-y border-border/60 bg-card/30">
-      <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-3 gap-y-10">
-        {stats.map((s, i) => (
-          <Reveal key={s.l} delay={i * 80} className="text-center px-4">
-            <p className="text-display text-5xl md:text-6xl text-primary">{s.n}</p>
-            <p className="mt-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.l}</p>
-          </Reveal>
+      <div className="mx-auto max-w-3xl px-6 grid grid-cols-1 md:grid-cols-2 gap-y-10">
+        <Stat n={3} suffix="×" l="School Leadership Roles" delay={0} />
+        <Stat n={10} suffix="+" l="Conferences & Events" delay={80} />
+      </div>
+    </section>
+  );
+}
+
+function Marquee() {
+  const items = [
+    "Deputy Head Boy",
+    "RYK MUN 2025 — Event Coordinator",
+    "Aitchison ACSEC — Runner-up",
+    "Aitchison ACSEC — Distinction",
+    "C3 Roundtable — Chair",
+    "Beaconhouse MUN II — Delegate",
+    "AMUN — Delegate",
+    "School Prefect",
+  ];
+  const row = [...items, ...items];
+  return (
+    <section aria-hidden className="py-6 border-b border-border/60 overflow-hidden bg-background">
+      <div className="flex gap-12 whitespace-nowrap animate-[marquee_38s_linear_infinite] will-change-transform">
+        {row.map((t, i) => (
+          <span key={i} className="text-display text-xl md:text-2xl text-foreground/70">
+            {t} <span className="text-gold mx-6">✦</span>
+          </span>
         ))}
       </div>
     </section>
