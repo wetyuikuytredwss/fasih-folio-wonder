@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, SectionHeading } from "@/components/site/reveal";
-import team from "@/assets/event-team.asset.json";
+import mysterySigning from "@/assets/mystery-signing.asset.json";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Muhammad Fasih Ur Rehman" },
-      { name: "description", content: "Projects by Muhammad Fasih Ur Rehman — interactive school events and creative web design." },
-      { property: "og:title", content: "Projects — Muhammad Fasih Ur Rehman" },
-      { property: "og:description", content: "Creative projects bringing ideas to life — events, web design, and more." },
-      { property: "og:image", content: team.url },
+      { title: "Projects, Muhammad Fasih Ur Rehman" },
+      { name: "description", content: "Projects by Muhammad Fasih Ur Rehman, interactive school events and creative web design." },
+      { property: "og:title", content: "Projects, Muhammad Fasih Ur Rehman" },
+      { property: "og:description", content: "Creative projects bringing ideas to life: events, web design, and more." },
+      { property: "og:image", content: mysterySigning.url },
     ],
   }),
   component: Projects,
@@ -19,9 +19,10 @@ const projects = [
   {
     title: "Interactive School Murder Mystery",
     kind: "Event Design",
-    scale: "50 – 80 participants",
-    summary: "A collaborative school-wide event blending creativity, teamwork, and event planning. Designed and coordinated end-to-end to deliver an immersive experience.",
+    scale: "School-wide collaborative event",
+    summary: "A collaborative school event blending creativity, teamwork, and event planning. Designed and coordinated end to end to deliver an immersive evening of discovery for fellow students.",
     bullets: ["Concept & narrative design", "Logistics & coordination", "Audience engagement"],
+    image: mysterySigning.url,
     accent: true,
   },
   {
@@ -30,6 +31,7 @@ const projects = [
     scale: "Personal projects",
     summary: "Personal website projects exploring thoughtful design, structured organisation, and the practical applications of technology.",
     bullets: ["Visual identity", "Responsive layouts", "Hands-on iteration"],
+    image: null as string | null,
     accent: false,
   },
 ];
@@ -49,7 +51,7 @@ function Projects() {
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              A small collection of work — large in scope, careful in execution. Each project is an exercise in planning, collaboration, and craft.
+              A small collection of work, large in scope and careful in execution. Each project is an exercise in planning, collaboration, and craft.
             </p>
           </Reveal>
         </div>
@@ -60,14 +62,14 @@ function Projects() {
           {projects.map((p, i) => (
             <Reveal key={p.title} delay={i * 120}>
               <article
-                className={`group relative overflow-hidden rounded-2xl border p-8 md:p-14 hover-lift ${
+                className={`group relative overflow-hidden rounded-2xl border hover-lift ${
                   p.accent
                     ? "bg-gradient-to-br from-emerald-deep to-emerald text-cream border-gold/40"
                     : "bg-card border-border"
                 }`}
               >
-                <div className="grid md:grid-cols-12 gap-8 items-start">
-                  <div className="md:col-span-8">
+                <div className="grid md:grid-cols-12 gap-0 items-stretch">
+                  <div className={`p-8 md:p-14 ${p.image ? "md:col-span-7" : "md:col-span-12"}`}>
                     <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em]">
                       <span className={p.accent ? "text-gold-soft" : "text-primary/70"}>{p.kind}</span>
                       <span className="opacity-50">·</span>
@@ -77,15 +79,25 @@ function Projects() {
                     <p className={`mt-5 max-w-2xl text-lg leading-relaxed ${p.accent ? "text-cream/85" : "text-foreground/80"}`}>
                       {p.summary}
                     </p>
+                    <ul className="mt-6 grid sm:grid-cols-3 gap-3">
+                      {p.bullets.map((b) => (
+                        <li key={b} className="flex items-start gap-3 text-sm">
+                          <span className="mt-2 h-px w-4 bg-gold flex-none" />
+                          <span className={p.accent ? "text-cream/90" : "text-foreground/85"}>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="md:col-span-4 space-y-3 md:border-l md:border-gold/30 md:pl-6">
-                    {p.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-3 text-sm">
-                        <span className="mt-2 h-px w-4 bg-gold flex-none" />
-                        <span className={p.accent ? "text-cream/90" : "text-foreground/85"}>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {p.image && (
+                    <div className="md:col-span-5 relative min-h-[260px] md:min-h-0">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-l from-transparent to-emerald-deep/40 md:to-emerald-deep/20" />
+                    </div>
+                  )}
                 </div>
                 <div className="absolute -right-20 -bottom-20 h-72 w-72 rounded-full border border-gold/20 pointer-events-none" />
               </article>
@@ -99,7 +111,7 @@ function Projects() {
           <SectionHeading
             eyebrow="What's next"
             title="More projects on the way"
-            lead="With A Levels ahead, I'm exploring new ideas at the intersection of technology, business, and creative thinking."
+            lead="Exploring new ideas at the intersection of events, organisation, and creative thinking."
           />
           <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground hover:shadow-[var(--shadow-gold)] transition">
             Collaborate with me →

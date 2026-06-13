@@ -1,19 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Reveal, SectionHeading } from "@/components/site/reveal";
+import { Reveal } from "@/components/site/reveal";
 import certPrincipal from "@/assets/certificate-principal.asset.json";
 import certMerit from "@/assets/certificate-merit.asset.json";
 import podium from "@/assets/podium-speech.asset.json";
 import mun from "@/assets/mun-delegates.asset.json";
 import team from "@/assets/event-team.asset.json";
 import team2 from "@/assets/event-team-2.asset.json";
+import trophies from "@/assets/trophies-mun.asset.json";
+import acsecHall from "@/assets/acsec-hall.asset.json";
+import campus from "@/assets/aitchison-campus.asset.json";
+import youngDelegate from "@/assets/young-delegate.asset.json";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
-      { title: "Experience — Muhammad Fasih Ur Rehman" },
+      { title: "Experience, Muhammad Fasih Ur Rehman" },
       { name: "description", content: "Student leadership roles, conference recognition, and community contributions of Muhammad Fasih Ur Rehman." },
-      { property: "og:title", content: "Experience — Muhammad Fasih Ur Rehman" },
+      { property: "og:title", content: "Experience, Muhammad Fasih Ur Rehman" },
       { property: "og:description", content: "Leadership, conferences, and recognition across school and beyond." },
       { property: "og:image", content: mun.url },
     ],
@@ -24,19 +28,19 @@ export const Route = createFileRoute("/experience")({
 type Tab = "leadership" | "conferences" | "community";
 
 const leadership = [
-  { role: "Deputy Head Boy", year: "2024 — 2025", note: "Senior student leadership role overseeing prefect duties and student initiatives." },
-  { role: "School Prefect", year: "2025 — 2026", note: "Continuing to serve in a leadership capacity in the senior school." },
-  { role: "School Prefect", year: "2022 — 2023", note: "Early experience in student leadership and responsibility." },
+  { role: "Deputy Head Boy", year: "2024 / 2025", note: "Senior student leadership role overseeing prefect duties and student initiatives." },
+  { role: "School Prefect", year: "2025 / 2026", note: "Continuing to serve in a leadership capacity in the senior school." },
+  { role: "School Prefect", year: "2022 / 2023", note: "Early experience in student leadership and responsibility." },
 ];
 
 const conferences = [
-  { title: "Aitchison College ACSEC — 10th Edition", subtitle: "Runner-up, Langlands Research Prize Committee", tag: "Recognition" },
-  { title: "Aitchison College ACSEC — 10th Edition", subtitle: "Distinction, Adler's Abyss Committee", tag: "Distinction" },
-  { title: "First C3 English Roundtable Conference", subtitle: "Chair", tag: "Leadership" },
-  { title: "C3 English Roundtable Conference", subtitle: "Special Mention", tag: "Recognition" },
   { title: "Rahim Yar Khan Model United Nations 2025", subtitle: "Event Coordinator", tag: "Organising" },
   { title: "Beaconhouse Rahim Yar Khan Model UN II", subtitle: "Delegate", tag: "Delegate" },
-  { title: "AAMUN First Edition", subtitle: "Delegate", tag: "Delegate" },
+  { title: "Aitchison College ACSEC, 10th Edition", subtitle: "Runner-up, Langlands Research Prize Committee", tag: "Honour" },
+  { title: "Aitchison College ACSEC, 10th Edition", subtitle: "Distinction, Adler's Abyss Committee", tag: "Honour" },
+  { title: "First C3 English Roundtable Conference", subtitle: "Chair", tag: "Leadership" },
+  { title: "C3 English Roundtable Conference", subtitle: "Special Mention", tag: "Honour" },
+  { title: "AMUN First Edition", subtitle: "Delegate", tag: "Delegate" },
 ];
 
 const community = [
@@ -125,10 +129,14 @@ function Experience() {
                 </Reveal>
               ))}
               <Reveal className="md:col-span-2" delay={200}>
+                <div className="grid md:grid-cols-2 gap-4 mt-4">
+                  <img src={trophies.url} alt="MUN trophies as Event Coordinator" className="rounded-lg border border-gold/40 w-full h-72 object-cover" />
+                  <img src={campus.url} alt="Aitchison College campus during ACSEC" className="rounded-lg border border-border w-full h-72 object-cover" />
+                </div>
                 <div className="grid md:grid-cols-3 gap-4 mt-4">
                   <img src={mun.url} alt="MUN delegates" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src={acsecHall.url} alt="ACSEC conference hall" className="rounded-lg border border-border w-full h-56 object-cover" />
                   <img src={team.url} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
-                  <img src={team2.url} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
                 </div>
               </Reveal>
             </div>
@@ -149,7 +157,11 @@ function Experience() {
                   </Reveal>
                 ))}
                 <Reveal delay={400}>
-                  <img src={certMerit.url} alt="Certificate of merit" className="mt-6 rounded-xl border border-border w-full max-w-md" />
+                  <div className="grid grid-cols-2 gap-4 mt-6">
+                    <img src={certMerit.url} alt="Certificate of merit" className="rounded-xl border border-border w-full" />
+                    <img src={youngDelegate.url} alt="Younger delegate speaking at a conference" className="rounded-xl border border-border w-full object-cover h-full" />
+                  </div>
+                  <img src={team2.url} alt="Event team behind the scenes" className="mt-4 rounded-xl border border-border w-full object-cover max-h-80" />
                 </Reveal>
               </div>
             </div>

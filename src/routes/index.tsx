@@ -4,14 +4,15 @@ import { Reveal, SectionHeading } from "@/components/site/reveal";
 import podiumAsset from "@/assets/podium-speech.asset.json";
 import munAsset from "@/assets/mun-delegates.asset.json";
 import mentoringAsset from "@/assets/mentoring.asset.json";
-import certAsset from "@/assets/certificate-principal.asset.json";
+import trophiesAsset from "@/assets/trophies-mun.asset.json";
+import campusAsset from "@/assets/aitchison-campus.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Muhammad Fasih Ur Rehman — Student. Leader. Builder." },
+      { title: "Muhammad Fasih Ur Rehman, Student. Leader. Builder." },
       { name: "description", content: "Portfolio of Muhammad Fasih Ur Rehman: leadership, conferences, and creative projects." },
-      { property: "og:title", content: "Muhammad Fasih Ur Rehman — Portfolio" },
+      { property: "og:title", content: "Muhammad Fasih Ur Rehman, Portfolio" },
       { property: "og:description", content: "Learning. Leading. Leaving a positive impact." },
       { property: "og:image", content: podiumAsset.url },
       { name: "twitter:image", content: podiumAsset.url },
@@ -111,7 +112,7 @@ function Hero() {
               />
               <div className="absolute -bottom-6 -left-6 bg-card border border-gold/40 rounded-lg px-4 py-3 shadow-[var(--shadow-elegant)]">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Deputy Head Boy</p>
-                <p className="text-display text-lg text-primary">2024 — 2025</p>
+                <p className="text-display text-lg text-primary">2024 / 2025</p>
               </div>
             </div>
           </Reveal>
@@ -133,12 +134,11 @@ function Stats() {
   const stats = [
     { n: "3×", l: "School Leadership Roles" },
     { n: "10+", l: "Conferences & Events" },
-    { n: "80", l: "Participants Engaged" },
-    { n: "2", l: "Distinctions Earned" },
+    { n: "Multi", l: "National Recognitions" },
   ];
   return (
     <section className="py-20 border-y border-border/60 bg-card/30">
-      <div className="mx-auto max-w-7xl px-6 grid grid-cols-2 md:grid-cols-4 gap-y-10">
+      <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-3 gap-y-10">
         {stats.map((s, i) => (
           <Reveal key={s.l} delay={i * 80} className="text-center px-4">
             <p className="text-display text-5xl md:text-6xl text-primary">{s.n}</p>
@@ -165,27 +165,17 @@ function Welcome() {
         <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-foreground/85">
           <Reveal delay={120}>
             <p>
-              I am Muhammad Fasih Ur Rehman, a student at H.H. Sheikh Khalifa Public School
-              and an incoming A Level student. My journey has been shaped by a commitment to
-              learning, a willingness to embrace responsibility, and an appreciation for
-              opportunities that encourage growth and meaningful contribution.
+              I am Muhammad Fasih Ur Rehman, a student at H.H. Sheikh Khalifa Public School currently preparing for the next chapter of my studies. My journey has been shaped by a commitment to learning, a willingness to embrace responsibility, and an appreciation for opportunities that encourage growth and meaningful contribution.
             </p>
           </Reveal>
           <Reveal delay={200}>
             <p>
-              Over the years, I have been fortunate to serve in student leadership, participate in
-              academic and co-curricular conferences, organise school events, and contribute to
-              creative projects. These experiences have strengthened my understanding of teamwork,
-              organisation, and service while encouraging me to approach new challenges with
-              confidence and curiosity.
+              Over the years, I have been fortunate to serve in student leadership, participate in academic and co-curricular conferences, organise school events, and contribute to creative projects. These experiences have strengthened my understanding of teamwork, organisation, and service, encouraging me to approach new challenges with confidence and curiosity.
             </p>
           </Reveal>
           <Reveal delay={280}>
             <p>
-              Alongside my academic pursuits, I maintain an interest in technology, business,
-              and the development of creative ideas into practical projects. I believe that
-              growth is a continuous process and that every experience offers an opportunity
-              to learn something new.
+              Alongside my academics, I enjoy organising events, contributing to school initiatives, and turning ideas into experiences that bring people together. I believe that growth is a continuous process and that every experience offers an opportunity to learn something new.
             </p>
           </Reveal>
           <Reveal delay={360}>
@@ -224,7 +214,7 @@ function FeatureGrid() {
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-emerald-deep/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 text-cream">
                 <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-2">Conferences</p>
-                <h3 className="text-display text-3xl md:text-4xl">Aitchison ACSEC · Beaconhouse MUN · AAMUN</h3>
+                <h3 className="text-display text-3xl md:text-4xl">Aitchison ACSEC, Beaconhouse MUN, AMUN</h3>
                 <p className="mt-3 max-w-xl text-cream/80">Delegate, chair, and event coordinator across some of the country's leading academic conferences.</p>
               </div>
             </Link>
@@ -235,11 +225,11 @@ function FeatureGrid() {
               to="/experience"
               className="block relative aspect-[4/5] md:aspect-auto md:h-full overflow-hidden rounded-xl border border-border hover-lift"
             >
-              <img src={certAsset.url} alt="Receiving recognition" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <img src={trophiesAsset.url} alt="MUN trophies awarded as Event Coordinator" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-cream">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-1">Recognition</p>
-                <h3 className="text-display text-2xl">Distinction & Merit</h3>
+                <h3 className="text-display text-2xl">Honoured across conferences</h3>
               </div>
             </Link>
           </Reveal>
@@ -260,17 +250,16 @@ function FeatureGrid() {
 
           <Reveal className="col-span-12 md:col-span-8 group" delay={240}>
             <Link
-              to="/projects"
-              className="block relative aspect-[16/9] overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-emerald-deep to-emerald p-10 text-cream hover-lift"
+              to="/experience"
+              className="block relative aspect-[16/9] overflow-hidden rounded-xl border border-border hover-lift"
             >
-              <div className="relative z-10 max-w-lg">
-                <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-3">Signature Project</p>
-                <h3 className="text-display text-3xl md:text-4xl">Interactive School Murder Mystery</h3>
-                <p className="mt-3 text-cream/80">A school-wide collaborative event bringing together up to 80 participants — creativity, teamwork, and event planning in one evening.</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm text-gold-soft group-hover:gap-3 transition-all">See the project →</span>
+              <img src={campusAsset.url} alt="Aitchison College campus during ACSEC" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-emerald-deep/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 text-cream">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-2">Beyond the classroom</p>
+                <h3 className="text-display text-3xl md:text-4xl">Representing the school nationally</h3>
+                <p className="mt-3 max-w-xl text-cream/80">From Aitchison College to Beaconhouse, carrying the school's voice into respected national forums.</p>
               </div>
-              <div className="absolute -right-10 -bottom-10 h-72 w-72 rounded-full border border-gold/30" />
-              <div className="absolute right-12 bottom-12 h-40 w-40 rounded-full border border-gold/40" />
             </Link>
           </Reveal>
         </div>
@@ -293,7 +282,7 @@ function CTA() {
         </Reveal>
         <Reveal delay={220}>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            As I begin my A Level studies, I look forward to building on the experiences that have shaped my journey — in technology, business, and leadership.
+            I look forward to building on the experiences that have shaped my journey, contributing to the communities around me, and embracing new challenges that encourage growth.
           </p>
         </Reveal>
         <Reveal delay={320}>

@@ -1,16 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, SectionHeading } from "@/components/site/reveal";
-import podiumAsset from "@/assets/podium-speech.asset.json";
+import portraitAsset from "@/assets/portrait-suit.asset.json";
 import mentoringAsset from "@/assets/mentoring.asset.json";
+import deputyAsset from "@/assets/deputy-head-boy.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Muhammad Fasih Ur Rehman" },
-      { name: "description", content: "About Muhammad Fasih Ur Rehman — student at H.H. Sheikh Khalifa Public School, incoming A Level student, leader, and builder." },
+      { title: "About, Muhammad Fasih Ur Rehman" },
+      { name: "description", content: "About Muhammad Fasih Ur Rehman, student at H.H. Sheikh Khalifa Public School, leader, organiser, and builder." },
       { property: "og:title", content: "About Muhammad Fasih Ur Rehman" },
       { property: "og:description", content: "A journey shaped by learning, leadership, and meaningful contribution." },
-      { property: "og:image", content: podiumAsset.url },
+      { property: "og:image", content: portraitAsset.url },
     ],
   }),
   component: About,
@@ -37,25 +38,25 @@ function About() {
           <Reveal className="lg:col-span-5">
             <div className="relative">
               <img
-                src={podiumAsset.url}
-                alt="Muhammad Fasih Ur Rehman at the podium"
-                className="w-full rounded-xl shadow-[var(--shadow-elegant)] border border-border"
+                src={portraitAsset.url}
+                alt="Muhammad Fasih Ur Rehman portrait"
+                className="w-full rounded-xl shadow-[var(--shadow-elegant)] border border-border object-cover aspect-[4/5]"
               />
               <div className="absolute -bottom-6 -right-6 hidden md:block bg-card border border-gold/40 rounded-lg px-5 py-3">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Incoming</p>
-                <p className="text-display text-xl text-primary">A Level Student</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Senior Prefect</p>
+                <p className="text-display text-xl text-primary">2025 / 2026</p>
               </div>
             </div>
           </Reveal>
           <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-foreground/85">
             <Reveal>
               <p className="text-display text-2xl md:text-3xl text-foreground/95 italic">
-                "Growth is a continuous process — and every experience offers an opportunity to learn something new."
+                "Growth is a continuous process, and every experience offers an opportunity to learn something new."
               </p>
             </Reveal>
             <Reveal delay={120}>
               <p>
-                I am Muhammad Fasih Ur Rehman, a student at H.H. Sheikh Khalifa Public School and an incoming A Level student. My journey has been shaped by a commitment to learning, a willingness to embrace responsibility, and an appreciation for opportunities that encourage growth and meaningful contribution.
+                I am Muhammad Fasih Ur Rehman, a student at H.H. Sheikh Khalifa Public School. My journey has been shaped by a commitment to learning, a willingness to embrace responsibility, and an appreciation for opportunities that encourage growth and meaningful contribution.
               </p>
             </Reveal>
             <Reveal delay={200}>
@@ -65,7 +66,7 @@ function About() {
             </Reveal>
             <Reveal delay={280}>
               <p>
-                Alongside my academic pursuits, I maintain an interest in technology, business, and the development of creative ideas into practical projects.
+                Alongside my academics, I take a genuine interest in organising events, coordinating school initiatives, and bringing people together around shared experiences. From conferences to community gatherings, I enjoy the work of planning, coordinating, and seeing ideas come to life.
               </p>
             </Reveal>
           </div>
@@ -101,11 +102,23 @@ function About() {
             <p className="text-xs uppercase tracking-[0.4em] text-primary/70 mb-4">In practice</p>
             <h2 className="text-display text-4xl md:text-5xl leading-tight">Small moments. <span className="italic text-primary">Real impact.</span></h2>
             <p className="mt-5 text-muted-foreground leading-relaxed text-lg">
-              Whether mentoring a younger student, organising an event, or representing a country at a Model UN, I try to bring the same care to every responsibility — and learn from each one.
+              Whether mentoring a younger student, organising an event, or representing a country at a Model UN, I try to bring the same care to every responsibility, and learn from each one.
             </p>
             <Link to="/experience" className="mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-primary hover:gap-3 transition-all">
               See the experience →
             </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="pb-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <img
+              src={deputyAsset.url}
+              alt="Muhammad Fasih Ur Rehman wearing the Deputy Head Boy sash"
+              className="w-full max-h-[640px] object-cover rounded-xl border border-gold/40 shadow-[var(--shadow-elegant)]"
+            />
           </Reveal>
         </div>
       </section>
