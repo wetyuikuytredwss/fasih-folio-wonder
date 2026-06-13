@@ -1,29 +1,324 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Reveal, SectionHeading } from "@/components/site/reveal";
+import podiumAsset from "@/assets/podium-speech.asset.json";
+import munAsset from "@/assets/mun-delegates.asset.json";
+import mentoringAsset from "@/assets/mentoring.asset.json";
+import certAsset from "@/assets/certificate-principal.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Muhammad Fasih Ur Rehman — Student. Leader. Builder." },
+      { name: "description", content: "Portfolio of Muhammad Fasih Ur Rehman: leadership, conferences, and creative projects." },
+      { property: "og:title", content: "Muhammad Fasih Ur Rehman — Portfolio" },
+      { property: "og:description", content: "Learning. Leading. Leaving a positive impact." },
+      { property: "og:image", content: podiumAsset.url },
+      { name: "twitter:image", content: podiumAsset.url },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Hero() {
+  const words = ["Student.", "Leader.", "Builder."];
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2200);
+    return () => clearInterval(t);
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_55%),radial-gradient(ellipse_at_bottom_right,color-mix(in_oklab,var(--emerald-deep)_22%,transparent),transparent_55%)]" />
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage: "radial-gradient(ellipse at center, black, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-10 items-center w-full py-20">
+        <div className="lg:col-span-7">
+          <Reveal>
+            <p className="text-xs uppercase tracking-[0.5em] text-primary/70 mb-6">
+              Portfolio · {new Date().getFullYear()}
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <h1 className="text-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] text-foreground">
+              Muhammad <span className="italic shimmer-text">Fasih</span> <br />
+              Ur Rehman
+            </h1>
+          </Reveal>
+          <Reveal delay={240}>
+            <div className="mt-8 flex items-baseline gap-3">
+              <span className="text-display text-2xl md:text-3xl text-muted-foreground">A</span>
+              <div className="relative h-12 md:h-14 overflow-hidden">
+                {words.map((w, i) => (
+                  <span
+                    key={w}
+                    className={`absolute left-0 text-display text-3xl md:text-4xl text-primary transition-all duration-700 ${
+                      i === idx ? "translate-y-0 opacity-100" : i < idx ? "-translate-y-full opacity-0" : "translate-y-full opacity-0"
+                    }`}
+                  >
+                    {w}
+                  </span>
+                ))}
+                <span className="invisible text-display text-3xl md:text-4xl">Builder.</span>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={360}>
+            <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed italic">
+              Learning. Leading. Leaving a positive impact.
+            </p>
+          </Reveal>
+          <Reveal delay={480}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/about"
+                className="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition hover:shadow-[var(--shadow-gold)]"
+              >
+                Explore the journey
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground hover:border-gold hover:text-primary transition"
+              >
+                Get in touch
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="lg:col-span-5 relative">
+          <Reveal delay={300}>
+            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-gold/30 via-transparent to-emerald-deep/30 blur-2xl" />
+              <div className="absolute inset-0 rounded-2xl border border-gold/30 rotate-3" />
+              <img
+                src={podiumAsset.url}
+                alt="Muhammad Fasih Ur Rehman addressing the assembly at his school"
+                className="relative h-full w-full object-cover rounded-2xl shadow-[var(--shadow-elegant)]"
+                loading="eager"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-card border border-gold/40 rounded-lg px-4 py-3 shadow-[var(--shadow-elegant)]">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Deputy Head Boy</p>
+                <p className="text-display text-lg text-primary">2024 — 2025</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      <a
+        href="#welcome"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-muted-foreground hover:text-primary transition"
+      >
+        Scroll to learn more
+        <span className="h-10 w-px bg-gradient-to-b from-gold to-transparent animate-pulse" />
+      </a>
+    </section>
+  );
+}
+
+function Stats() {
+  const stats = [
+    { n: "3×", l: "School Leadership Roles" },
+    { n: "10+", l: "Conferences & Events" },
+    { n: "80", l: "Participants Engaged" },
+    { n: "2", l: "Distinctions Earned" },
+  ];
+  return (
+    <section className="py-20 border-y border-border/60 bg-card/30">
+      <div className="mx-auto max-w-7xl px-6 grid grid-cols-2 md:grid-cols-4 gap-y-10">
+        {stats.map((s, i) => (
+          <Reveal key={s.l} delay={i * 80} className="text-center px-4">
+            <p className="text-display text-5xl md:text-6xl text-primary">{s.n}</p>
+            <p className="mt-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.l}</p>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Welcome() {
+  return (
+    <section id="welcome" className="py-28">
+      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12 items-start">
+        <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <Reveal>
+            <p className="text-xs uppercase tracking-[0.4em] text-primary/70 mb-5">Welcome</p>
+            <h2 className="text-display text-4xl md:text-5xl leading-tight">
+              A journey shaped by <span className="italic text-primary">learning</span>, leadership, and the pursuit of meaningful contribution.
+            </h2>
+          </Reveal>
+        </div>
+        <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-foreground/85">
+          <Reveal delay={120}>
+            <p>
+              I am Muhammad Fasih Ur Rehman, a student at H.H. Sheikh Khalifa Public School
+              and an incoming A Level student. My journey has been shaped by a commitment to
+              learning, a willingness to embrace responsibility, and an appreciation for
+              opportunities that encourage growth and meaningful contribution.
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <p>
+              Over the years, I have been fortunate to serve in student leadership, participate in
+              academic and co-curricular conferences, organise school events, and contribute to
+              creative projects. These experiences have strengthened my understanding of teamwork,
+              organisation, and service while encouraging me to approach new challenges with
+              confidence and curiosity.
+            </p>
+          </Reveal>
+          <Reveal delay={280}>
+            <p>
+              Alongside my academic pursuits, I maintain an interest in technology, business,
+              and the development of creative ideas into practical projects. I believe that
+              growth is a continuous process and that every experience offers an opportunity
+              to learn something new.
+            </p>
+          </Reveal>
+          <Reveal delay={360}>
+            <div className="pt-4">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-primary hover:gap-3 transition-all"
+              >
+                Read the full story <span>→</span>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeatureGrid() {
+  return (
+    <section className="py-24 bg-card/30">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeading
+          eyebrow="Featured"
+          title="Moments that shaped the journey"
+          lead="A glimpse into leadership, conferences, and the experiences that continue to inspire growth."
+        />
+
+        <div className="grid grid-cols-12 gap-5 md:gap-6">
+          <Reveal className="col-span-12 md:col-span-8 group" delay={0}>
+            <Link
+              to="/experience"
+              className="block relative aspect-[16/10] overflow-hidden rounded-xl border border-border hover-lift"
+            >
+              <img src={munAsset.url} alt="Model UN delegates" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-emerald-deep/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 text-cream">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-2">Conferences</p>
+                <h3 className="text-display text-3xl md:text-4xl">Aitchison ACSEC · Beaconhouse MUN · AAMUN</h3>
+                <p className="mt-3 max-w-xl text-cream/80">Delegate, chair, and event coordinator across some of the country's leading academic conferences.</p>
+              </div>
+            </Link>
+          </Reveal>
+
+          <Reveal className="col-span-12 md:col-span-4 group" delay={120}>
+            <Link
+              to="/experience"
+              className="block relative aspect-[4/5] md:aspect-auto md:h-full overflow-hidden rounded-xl border border-border hover-lift"
+            >
+              <img src={certAsset.url} alt="Receiving recognition" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-cream">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-1">Recognition</p>
+                <h3 className="text-display text-2xl">Distinction & Merit</h3>
+              </div>
+            </Link>
+          </Reveal>
+
+          <Reveal className="col-span-12 md:col-span-4 group" delay={180}>
+            <Link
+              to="/projects"
+              className="block relative aspect-square overflow-hidden rounded-xl border border-border hover-lift"
+            >
+              <img src={mentoringAsset.url} alt="Mentoring a younger student" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-cream">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-1">Service</p>
+                <h3 className="text-display text-2xl">Mentoring & community</h3>
+              </div>
+            </Link>
+          </Reveal>
+
+          <Reveal className="col-span-12 md:col-span-8 group" delay={240}>
+            <Link
+              to="/projects"
+              className="block relative aspect-[16/9] overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-emerald-deep to-emerald p-10 text-cream hover-lift"
+            >
+              <div className="relative z-10 max-w-lg">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-3">Signature Project</p>
+                <h3 className="text-display text-3xl md:text-4xl">Interactive School Murder Mystery</h3>
+                <p className="mt-3 text-cream/80">A school-wide collaborative event bringing together up to 80 participants — creativity, teamwork, and event planning in one evening.</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm text-gold-soft group-hover:gap-3 transition-all">See the project →</span>
+              </div>
+              <div className="absolute -right-10 -bottom-10 h-72 w-72 rounded-full border border-gold/30" />
+              <div className="absolute right-12 bottom-12 h-40 w-40 rounded-full border border-gold/40" />
+            </Link>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CTA() {
+  return (
+    <section className="py-28">
+      <div className="mx-auto max-w-5xl px-6 text-center">
+        <Reveal>
+          <p className="text-xs uppercase tracking-[0.5em] text-primary/70 mb-6 ornament">Looking forward</p>
+        </Reveal>
+        <Reveal delay={100}>
+          <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-tight">
+            Embracing every new chapter with <span className="italic text-primary">curiosity</span> and <span className="italic text-primary">purpose</span>.
+          </h2>
+        </Reveal>
+        <Reveal delay={220}>
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+            As I begin my A Level studies, I look forward to building on the experiences that have shaped my journey — in technology, business, and leadership.
+          </p>
+        </Reveal>
+        <Reveal delay={320}>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Link to="/projects" className="rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground hover:shadow-[var(--shadow-gold)] transition">
+              See projects
+            </Link>
+            <Link to="/contact" className="rounded-full border border-border px-7 py-3.5 text-sm font-medium hover:border-gold hover:text-primary transition">
+              Reach out
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Home() {
+  return (
+    <>
+      <Hero />
+      <Stats />
+      <Welcome />
+      <FeatureGrid />
+      <CTA />
+    </>
   );
 }
