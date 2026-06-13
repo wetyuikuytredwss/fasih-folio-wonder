@@ -9,7 +9,7 @@ export const Route = createFileRoute("/projects")({
       { name: "description", content: "Projects by Muhammad Fasih Ur Rehman, interactive school events and creative web design." },
       { property: "og:title", content: "Projects, Muhammad Fasih Ur Rehman" },
       { property: "og:description", content: "Creative projects bringing ideas to life: events, web design, and more." },
-      { property: "og:image", content: mysterySigning.url },
+      { property: "og:image", content: "/retouch_2026030619031767.jpg.jpeg" },
     ],
   }),
   component: Projects,
