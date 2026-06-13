@@ -109,7 +109,7 @@ function Experience() {
                 </ol>
               </div>
               <Reveal className="lg:col-span-5" delay={150}>
-                <img src={podium.url} alt="Speaking from the podium" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
+                <img src="/FB_IMG_1781346114823.jpg.jpeg" alt="Speaking from the podium" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
               </Reveal>
             </div>
           )}
@@ -130,13 +130,13 @@ function Experience() {
               ))}
               <Reveal className="md:col-span-2" delay={200}>
                 <div className="grid md:grid-cols-2 gap-4 mt-4">
-                  <img src={trophies.url} alt="MUN trophies as Event Coordinator" className="rounded-lg border border-gold/40 w-full h-72 object-cover" />
-                  <img src={campus.url} alt="Aitchison College campus during ACSEC" className="rounded-lg border border-border w-full h-72 object-cover" />
+                  <img src="/IMG_6279.jpeg" alt="MUN trophies as Event Coordinator" className="rounded-lg border border-gold/40 w-full h-full object-cover" />
+                  <img src="/IMG-20251023-WA0088.jpg.jpeg" alt="Aitchison College campus during ACSEC" className="rounded-lg border border-border w-full h-72 object-cover" />
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 mt-4">
-                  <img src={mun.url} alt="MUN delegates" className="rounded-lg border border-border w-full h-56 object-cover" />
-                  <img src={acsecHall.url} alt="ACSEC conference hall" className="rounded-lg border border-border w-full h-56 object-cover" />
-                  <img src={team.url} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src="/IMG_20251003_154145.jpg.jpeg" alt="MUN delegates" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src="/IMG_20251023_130447.jpg.jpeg" alt="ACSEC conference hall" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src="/FB_IMG_1781346162818.jpg.jpeg" alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
                 </div>
               </Reveal>
             </div>
@@ -145,7 +145,7 @@ function Experience() {
           {tab === "community" && (
             <div className="grid lg:grid-cols-12 gap-10 items-start">
               <Reveal className="lg:col-span-5">
-                <img src={certPrincipal.url} alt="Receiving a certificate" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
+                <img src="/FB_IMG_1781345849302.jpg.jpeg" alt="Receiving a certificate" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
               </Reveal>
               <div className="lg:col-span-7 space-y-5">
                 {community.map((c, i) => (
@@ -158,11 +158,10 @@ function Experience() {
                 ))}
                 <Reveal delay={400}>
                   <div className="grid grid-cols-2 gap-4 mt-6">
-                    <img src={certMerit.url} alt="Certificate of merit" className="rounded-xl border border-border w-full" />
-                    <img src={youngDelegate.url} alt="Younger delegate speaking at a conference" className="rounded-xl border border-border w-full object-cover h-full" />
+                    <img src="/FB_IMG_1781346311015.jpg.jpeg" alt="Certificate of merit" className="rounded-xl border border-border w-full" />
+                    <img src="/IMG_20260609_184315.jpg.jpeg" alt="Younger delegate speaking at a conference" className="rounded-xl border border-border w-full object-cover h-full" />
                   </div>
-                  <img src={team2.url} alt="Event team behind the scenes" className="mt-4 rounded-xl border border-border w-full object-cover max-h-80" />
-                </Reveal>
+               </Reveal>
               </div>
             </div>
           )}
