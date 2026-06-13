@@ -1,11 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Reveal, SectionHeading } from "@/components/site/reveal";
-import podiumAsset from "@/assets/podium-speech.asset.json";
-import munAsset from "@/assets/mun-delegates.asset.json";
-import mentoringAsset from "@/assets/mentoring.asset.json";
-import trophiesAsset from "@/assets/trophies-mun.asset.json";
-import campusAsset from "@/assets/aitchison-campus.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,8 +9,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Portfolio of Muhammad Fasih Ur Rehman: leadership, conferences, and creative projects." },
       { property: "og:title", content: "Muhammad Fasih Ur Rehman, Portfolio" },
       { property: "og:description", content: "Learning. Leading. Leaving a positive impact." },
-      { property: "og:image", content: podiumAsset.url },
-      { name: "twitter:image", content: podiumAsset.url },
+      { property: "og:image", content: "/IMG_20260525_153634.jpg" },
+      { name: "twitter:image", content: "/IMG_20260525_153634.jpg" },
     ],
   }),
   component: Home,
@@ -25,10 +20,12 @@ function Hero() {
   const words = ["Student.", "Leader.", "Builder."];
   const [idx, setIdx] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2200);
     return () => clearInterval(t);
   }, []);
+
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
@@ -36,7 +33,6 @@ function Hero() {
     setTilt({ x, y });
   };
   const onLeave = () => setTilt({ x: 0, y: 0 });
-
 
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden">
@@ -117,8 +113,8 @@ function Hero() {
               <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-gold/30 via-transparent to-emerald-deep/30 blur-2xl" />
               <div className="absolute inset-0 rounded-2xl border border-gold/30 rotate-3" />
               <img
-                src={podiumAsset.url}
-                alt="Muhammad Fasih Ur Rehman addressing the assembly at his school"
+                src="/IMG_20260525_153634.jpg"
+                alt="Muhammad Fasih Ur Rehman as Deputy Head Boy"
                 className="relative h-full w-full object-cover rounded-2xl shadow-[var(--shadow-elegant)]"
                 loading="eager"
               />
@@ -136,7 +132,6 @@ function Hero() {
             </div>
           </Reveal>
         </div>
-
       </div>
 
       <a
@@ -284,7 +279,7 @@ function FeatureGrid() {
               to="/experience"
               className="block relative aspect-[16/10] overflow-hidden rounded-xl border border-border hover-lift"
             >
-              <img src={munAsset.url} alt="Model UN delegates" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <img src="/IMG_20251023_130447.jpg.jpg" alt="Model UN delegates in assembly" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-emerald-deep/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 text-cream">
                 <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-2">Conferences</p>
@@ -299,110 +294,7 @@ function FeatureGrid() {
               to="/experience"
               className="block relative aspect-[4/5] md:aspect-auto md:h-full overflow-hidden rounded-xl border border-border hover-lift"
             >
-              <img src={trophiesAsset.url} alt="MUN trophies awarded as Event Coordinator" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <img src="/IMG_6279.jpg" alt="MUN Event Coordinator Trophies" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-cream">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-1">Recognition</p>
-                <h3 className="text-display text-2xl">Honoured across conferences</h3>
-              </div>
-            </Link>
-          </Reveal>
-
-          <Reveal className="col-span-12 md:col-span-4 group" delay={180}>
-            <Link
-              to="/projects"
-              className="block relative aspect-square overflow-hidden rounded-xl border border-border hover-lift"
-            >
-              <img src={mentoringAsset.url} alt="Mentoring a younger student" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-cream">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-1">Service</p>
-                <h3 className="text-display text-2xl">Mentoring & community</h3>
-              </div>
-            </Link>
-          </Reveal>
-
-          <Reveal className="col-span-12 md:col-span-8 group" delay={240}>
-            <Link
-              to="/experience"
-              className="block relative aspect-[16/9] overflow-hidden rounded-xl border border-border hover-lift"
-            >
-              <img src={campusAsset.url} alt="Aitchison College campus during ACSEC" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-emerald-deep/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-cream">
-                <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-2">Beyond the classroom</p>
-                <h3 className="text-display text-3xl md:text-4xl">Representing the school nationally</h3>
-                <p className="mt-3 max-w-xl text-cream/80">From Aitchison College to Beaconhouse, carrying the school's voice into respected national forums.</p>
-              </div>
-            </Link>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTA() {
-  return (
-    <section className="py-28">
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        <Reveal>
-          <p className="text-xs uppercase tracking-[0.5em] text-primary/70 mb-6 ornament">Looking forward</p>
-        </Reveal>
-        <Reveal delay={100}>
-          <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-tight">
-            Embracing every new chapter with <span className="italic text-primary">curiosity</span> and <span className="italic text-primary">purpose</span>.
-          </h2>
-        </Reveal>
-        <Reveal delay={220}>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            I look forward to building on the experiences that have shaped my journey, contributing to the communities around me, and embracing new challenges that encourage growth.
-          </p>
-        </Reveal>
-        <Reveal delay={320}>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link to="/projects" className="rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground hover:shadow-[var(--shadow-gold)] transition">
-              See projects
-            </Link>
-            <Link to="/contact" className="rounded-full border border-border px-7 py-3.5 text-sm font-medium hover:border-gold hover:text-primary transition">
-              Reach out
-            </Link>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function ScrollProgress() {
-  const [p, setP] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      setP(max > 0 ? (h.scrollTop / max) * 100 : 0);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent">
-      <div className="h-full bg-gradient-to-r from-gold via-primary to-gold" style={{ width: `${p}%` }} />
-    </div>
-  );
-}
-
-function Home() {
-  return (
-    <>
-      <ScrollProgress />
-      <Hero />
-      <Stats />
-      <Marquee />
-      <Welcome />
-      <FeatureGrid />
-      <CTA />
-    </>
-  );
-}
+                <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-
