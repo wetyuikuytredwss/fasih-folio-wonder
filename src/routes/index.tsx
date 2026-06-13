@@ -280,7 +280,7 @@ function FeatureGrid() {
               to="/experience"
               className="block relative aspect-[16/10] overflow-hidden rounded-xl border border-border hover-lift"
             >
-              <img src="/IMG_20251003_154145.jpg.jpg" alt="Model UN delegates" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <img src="/IMG_20251003_154145.jpg.jpeg" alt="Model UN delegates" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-emerald-deep/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 text-cream">
                 <p className="text-xs uppercase tracking-[0.35em] text-gold-soft mb-2">Conferences</p>
@@ -309,7 +309,7 @@ function FeatureGrid() {
               to="/projects"
               className="block relative aspect-square overflow-hidden rounded-xl border border-border hover-lift"
             >
-              <img src="/57375.jpg" alt="Mentoring a younger student" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+              <img src="/57375.jpeg" alt="Mentoring a younger student" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/90 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-cream">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold-soft mb-1">Service</p>
