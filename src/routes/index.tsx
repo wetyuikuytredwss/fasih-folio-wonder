@@ -24,10 +24,19 @@ export const Route = createFileRoute("/")({
 function Hero() {
   const words = ["Student.", "Leader.", "Builder."];
   const [idx, setIdx] = useState(0);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2200);
     return () => clearInterval(t);
   }, []);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    setTilt({ x, y });
+  };
+  const onLeave = () => setTilt({ x: 0, y: 0 });
+
 
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden">
