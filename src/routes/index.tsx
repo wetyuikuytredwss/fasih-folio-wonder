@@ -108,9 +108,12 @@ function Hero() {
           </Reveal>
         </div>
 
-        <div className="lg:col-span-5 relative">
+        <div className="lg:col-span-5 relative" onMouseMove={onMove} onMouseLeave={onLeave} style={{ perspective: "1200px" }}>
           <Reveal delay={300}>
-            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+            <div
+              className="relative aspect-[4/5] w-full max-w-md mx-auto transition-transform duration-300 ease-out"
+              style={{ transform: `rotateY(${tilt.x * 6}deg) rotateX(${-tilt.y * 6}deg)` }}
+            >
               <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-gold/30 via-transparent to-emerald-deep/30 blur-2xl" />
               <div className="absolute inset-0 rounded-2xl border border-gold/30 rotate-3" />
               <img
@@ -119,6 +122,13 @@ function Hero() {
                 className="relative h-full w-full object-cover rounded-2xl shadow-[var(--shadow-elegant)]"
                 loading="eager"
               />
+              <div
+                className="pointer-events-none absolute inset-0 rounded-2xl"
+                style={{
+                  background: `radial-gradient(circle at ${50 + tilt.x * 30}% ${50 + tilt.y * 30}%, color-mix(in oklab, var(--gold) 28%, transparent), transparent 55%)`,
+                  mixBlendMode: "soft-light",
+                }}
+              />
               <div className="absolute -bottom-6 -left-6 bg-card border border-gold/40 rounded-lg px-4 py-3 shadow-[var(--shadow-elegant)]">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Deputy Head Boy</p>
                 <p className="text-display text-lg text-primary">2024 / 2025</p>
@@ -126,6 +136,7 @@ function Hero() {
             </div>
           </Reveal>
         </div>
+
       </div>
 
       <a
