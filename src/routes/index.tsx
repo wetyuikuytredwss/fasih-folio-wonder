@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Reveal, SectionHeading } from "@/components/site/reveal";
-import podiumAsset from "@/assets/podium-speech.asset.json";
+import podiumAsset from "@/public/FB_IMG_1781346114823.jpg.jpeg";
 import munAsset from "@/assets/mun-delegates.asset.json";
 import mentoringAsset from "@/assets/mentoring.asset.json";
 import trophiesAsset from "@/assets/trophies-mun.asset.json";
