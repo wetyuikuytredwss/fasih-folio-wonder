@@ -24,10 +24,19 @@ export const Route = createFileRoute("/")({
 function Hero() {
   const words = ["Student.", "Leader.", "Builder."];
   const [idx, setIdx] = useState(0);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % words.length), 2200);
     return () => clearInterval(t);
   }, []);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    setTilt({ x, y });
+  };
+  const onLeave = () => setTilt({ x: 0, y: 0 });
+
 
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden">
@@ -99,9 +108,12 @@ function Hero() {
           </Reveal>
         </div>
 
-        <div className="lg:col-span-5 relative">
+        <div className="lg:col-span-5 relative" onMouseMove={onMove} onMouseLeave={onLeave} style={{ perspective: "1200px" }}>
           <Reveal delay={300}>
-            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+            <div
+              className="relative aspect-[4/5] w-full max-w-md mx-auto transition-transform duration-300 ease-out"
+              style={{ transform: `rotateY(${tilt.x * 6}deg) rotateX(${-tilt.y * 6}deg)` }}
+            >
               <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-gold/30 via-transparent to-emerald-deep/30 blur-2xl" />
               <div className="absolute inset-0 rounded-2xl border border-gold/30 rotate-3" />
               <img
@@ -110,6 +122,13 @@ function Hero() {
                 className="relative h-full w-full object-cover rounded-2xl shadow-[var(--shadow-elegant)]"
                 loading="eager"
               />
+              <div
+                className="pointer-events-none absolute inset-0 rounded-2xl"
+                style={{
+                  background: `radial-gradient(circle at ${50 + tilt.x * 30}% ${50 + tilt.y * 30}%, color-mix(in oklab, var(--gold) 28%, transparent), transparent 55%)`,
+                  mixBlendMode: "soft-light",
+                }}
+              />
               <div className="absolute -bottom-6 -left-6 bg-card border border-gold/40 rounded-lg px-4 py-3 shadow-[var(--shadow-elegant)]">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Deputy Head Boy</p>
                 <p className="text-display text-lg text-primary">2024 / 2025</p>
@@ -117,6 +136,7 @@ function Hero() {
             </div>
           </Reveal>
         </div>
+
       </div>
 
       <a
@@ -130,20 +150,74 @@ function Hero() {
   );
 }
 
+function useCountUp(target: number, suffix = "", start = false, duration = 1600) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setValue(Math.round(target * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, start, duration]);
+  return `${value}${suffix}`;
+}
+
+function Stat({ n, suffix, l, delay }: { n: number; suffix: string; l: string; delay: number }) {
+  const [show, setShow] = useState(false);
+  const ref = (el: HTMLDivElement | null) => {
+    if (!el || show) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setShow(true); io.disconnect(); }
+    }, { threshold: 0.4 });
+    io.observe(el);
+  };
+  const value = useCountUp(n, suffix, show);
+  return (
+    <Reveal delay={delay} className="text-center px-4">
+      <div ref={ref}>
+        <p className="text-display text-5xl md:text-6xl text-primary">{value}</p>
+        <p className="mt-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">{l}</p>
+      </div>
+    </Reveal>
+  );
+}
+
 function Stats() {
-  const stats = [
-    { n: "3×", l: "School Leadership Roles" },
-    { n: "10+", l: "Conferences & Events" },
-    { n: "Multi", l: "National Recognitions" },
-  ];
   return (
     <section className="py-20 border-y border-border/60 bg-card/30">
-      <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-3 gap-y-10">
-        {stats.map((s, i) => (
-          <Reveal key={s.l} delay={i * 80} className="text-center px-4">
-            <p className="text-display text-5xl md:text-6xl text-primary">{s.n}</p>
-            <p className="mt-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.l}</p>
-          </Reveal>
+      <div className="mx-auto max-w-3xl px-6 grid grid-cols-1 md:grid-cols-2 gap-y-10">
+        <Stat n={3} suffix="×" l="School Leadership Roles" delay={0} />
+        <Stat n={10} suffix="+" l="Conferences & Events" delay={80} />
+      </div>
+    </section>
+  );
+}
+
+function Marquee() {
+  const items = [
+    "Deputy Head Boy",
+    "RYK MUN 2025 — Event Coordinator",
+    "Aitchison ACSEC — Runner-up",
+    "Aitchison ACSEC — Distinction",
+    "C3 Roundtable — Chair",
+    "Beaconhouse MUN II — Delegate",
+    "AMUN — Delegate",
+    "School Prefect",
+  ];
+  const row = [...items, ...items];
+  return (
+    <section aria-hidden className="py-6 border-b border-border/60 overflow-hidden bg-background">
+      <div className="flex gap-12 whitespace-nowrap animate-[marquee_38s_linear_infinite] will-change-transform">
+        {row.map((t, i) => (
+          <span key={i} className="text-display text-xl md:text-2xl text-foreground/70">
+            {t} <span className="text-gold mx-6">✦</span>
+          </span>
         ))}
       </div>
     </section>
@@ -300,11 +374,32 @@ function CTA() {
   );
 }
 
+function ScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setP(max > 0 ? (h.scrollTop / max) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent">
+      <div className="h-full bg-gradient-to-r from-gold via-primary to-gold" style={{ width: `${p}%` }} />
+    </div>
+  );
+}
+
 function Home() {
   return (
     <>
+      <ScrollProgress />
       <Hero />
       <Stats />
+      <Marquee />
       <Welcome />
       <FeatureGrid />
       <CTA />
