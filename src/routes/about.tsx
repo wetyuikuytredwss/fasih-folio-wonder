@@ -11,7 +11,7 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "About Muhammad Fasih Ur Rehman, student at H.H. Sheikh Khalifa Public School, leader, organiser, and builder." },
       { property: "og:title", content: "About Muhammad Fasih Ur Rehman" },
       { property: "og:description", content: "A journey shaped by learning, leadership, and meaningful contribution." },
-      { property: "og:image", content: portraitAsset.url },
+      { property: "og:image", content: "/Screenshot_20260613-172749.png" },
     ],
   }),
   component: About,
@@ -38,7 +38,7 @@ function About() {
           <Reveal className="lg:col-span-5">
             <div className="relative">
               <img
-                src={portraitAsset.url}
+                src="/Screenshot_20260613-172749.png"
                 alt="Muhammad Fasih Ur Rehman portrait"
                 className="w-full rounded-xl shadow-[var(--shadow-elegant)] border border-border object-cover aspect-[4/5]"
               />
@@ -96,7 +96,7 @@ function About() {
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
           <Reveal>
-            <img src={mentoringAsset.url} alt="Mentoring moment" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
+            <img src="/57375.jpeg" alt="Mentoring moment" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
           </Reveal>
           <Reveal delay={120}>
             <p className="text-xs uppercase tracking-[0.4em] text-primary/70 mb-4">In practice</p>
@@ -115,7 +115,7 @@ function About() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <img
-              src={deputyAsset.url}
+              src="/FB_IMG_1781346170365.jpg.jpeg"
               alt="Muhammad Fasih Ur Rehman wearing the Deputy Head Boy sash"
               className="w-full max-h-[640px] object-cover rounded-xl border border-gold/40 shadow-[var(--shadow-elegant)]"
             />
