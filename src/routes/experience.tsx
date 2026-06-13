@@ -105,7 +105,7 @@ function Experience() {
                 </ol>
               </div>
               <Reveal className="lg:col-span-5" delay={150}>
-                <img src={podium} alt="Speaking from the podium" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
+                <img src={podium.url} alt="Speaking from the podium" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
               </Reveal>
             </div>
           )}
@@ -126,9 +126,9 @@ function Experience() {
               ))}
               <Reveal className="md:col-span-2" delay={200}>
                 <div className="grid md:grid-cols-3 gap-4 mt-4">
-                  <img src={mun} alt="MUN delegates" className="rounded-lg border border-border w-full h-56 object-cover" />
-                  <img src={team} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
-                  <img src={team2} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src={mun.url} alt="MUN delegates" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src={team.url} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
+                  <img src={team2.url} alt="Event team" className="rounded-lg border border-border w-full h-56 object-cover" />
                 </div>
               </Reveal>
             </div>
@@ -137,7 +137,7 @@ function Experience() {
           {tab === "community" && (
             <div className="grid lg:grid-cols-12 gap-10 items-start">
               <Reveal className="lg:col-span-5">
-                <img src={certPrincipal} alt="Receiving a certificate" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
+                <img src={certPrincipal.url} alt="Receiving a certificate" className="rounded-xl border border-border shadow-[var(--shadow-elegant)]" />
               </Reveal>
               <div className="lg:col-span-7 space-y-5">
                 {community.map((c, i) => (
@@ -149,7 +149,7 @@ function Experience() {
                   </Reveal>
                 ))}
                 <Reveal delay={400}>
-                  <img src={certMerit} alt="Certificate of merit" className="mt-6 rounded-xl border border-border w-full max-w-md" />
+                  <img src={certMerit.url} alt="Certificate of merit" className="mt-6 rounded-xl border border-border w-full max-w-md" />
                 </Reveal>
               </div>
             </div>
