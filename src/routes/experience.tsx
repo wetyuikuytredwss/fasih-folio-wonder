@@ -131,7 +131,7 @@ function Experience() {
               <Reveal className="md:col-span-2" delay={200}>
                 <div className="grid md:grid-cols-2 gap-4 mt-4">
                   <img src="/IMG_6279.jpeg" alt="MUN trophies as Event Coordinator" className="rounded-lg border border-gold/40 w-full h-full object-cover" />
-                  <img src="/IMG-20251023-WA0088.jpg.jpeg" alt="Aitchison College campus during ACSEC" className="rounded-lg border border-border w-full h-72 object-cover" />
+                  <img src="/IMG-20251023-WA0088.jpg.jpeg" alt="Aitchison College campus during ACSEC" className="rounded-lg border border-border w-full h-full object-cover" />
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 mt-4">
                   <img src="/IMG_20251003_154145.jpg.jpeg" alt="MUN delegates" className="rounded-lg border border-border w-full h-56 object-cover" />
